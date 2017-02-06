@@ -14,13 +14,19 @@ var events_app_component_1 = require('./events-app.component');
 var events_list_component_1 = require('./events/events-list.component');
 var event_thumbnail_component_1 = require('./events/event-thumbnail.component');
 var nav_component_1 = require('./nav/nav.component');
+var event_service_1 = require('./events/shared/event.service');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule],
-            declarations: [events_app_component_1.EventsAppComponent, events_list_component_1.EventsListComponent, event_thumbnail_component_1.EventThumbnailComponent, nav_component_1.NavComponent],
+            declarations: [
+                events_app_component_1.EventsAppComponent,
+                events_list_component_1.EventsListComponent,
+                event_thumbnail_component_1.EventThumbnailComponent,
+                nav_component_1.NavComponent],
+            providers: [event_service_1.EventService],
             bootstrap: [events_app_component_1.EventsAppComponent]
         }), 
         __metadata('design:paramtypes', [])

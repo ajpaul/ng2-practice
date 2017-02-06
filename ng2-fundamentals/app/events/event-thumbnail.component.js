@@ -12,6 +12,13 @@ var core_1 = require('@angular/core');
 var EventThumbnailComponent = (function () {
     function EventThumbnailComponent() {
     }
+    EventThumbnailComponent.prototype.setGreen = function (time) {
+        if (this.event && this.event.time === '8:00 am')
+            return ['green', 'bold'];
+        else if (this.event && this.event.time === '10:00 am')
+            return ['red', 'bold'];
+        return [];
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)

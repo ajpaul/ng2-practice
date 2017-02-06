@@ -1,3 +1,19 @@
 .pad-left {
     padding-left: 10px;
 }
+
+.thumbnail {
+    min-height: 210px;
+}
+
+.green {
+    color: lightgreen;
+}
+
+.red {
+    color: lightcoral;
+}
+
+.bold {
+    font-weight: 700;
+}
