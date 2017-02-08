@@ -9,20 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var auth_service_1 = require('../user/auth.service');
-var NavComponent = (function () {
-    function NavComponent(auth) {
-        this.auth = auth;
+var event_service_1 = require('./shared/event.service');
+var EventListResolver = (function () {
+    function EventListResolver(eventService) {
+        this.eventService = eventService;
     }
-    NavComponent = __decorate([
-        core_1.Component({
-            selector: 'nav-component',
-            templateUrl: 'app/nav/nav.component.html',
-            styleUrls: ['app/nav/nav.component.css']
-        }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
-    ], NavComponent);
-    return NavComponent;
+    //dont call subscribe here. We want an observable, not a subscription
+    //needs to be consumed and listed as a provider
+    EventListResolver.prototype.resolve = function () {
+        return this.eventService.getEvents().map(function (events) { return events; });
+    };
+    EventListResolver = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [event_service_1.EventService])
+    ], EventListResolver);
+    return EventListResolver;
 }());
-exports.NavComponent = NavComponent;
-//# sourceMappingURL=nav.component.js.map
+exports.EventListResolver = EventListResolver;
+//# sourceMappingURL=events-list-resolver.service.js.map

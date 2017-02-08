@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouterModule } from '@angular/router'
+
+import {
+    EventsListComponent,
+    EventThumbnailComponent,
+    EventDetailsComponent,
+    CreateEventComponent,
+    EventService,
+    EventRouteActivator,
+    EventListResolver
+} from './events/index'
  
 import { EventsAppComponent } from './events-app.component'
-import { EventsListComponent } from './events/events-list.component'
-import { EventThumbnailComponent } from './events/event-thumbnail.component'
-import { EventDetailsComponent } from './events/event-details/event-details.component'
-import { CreateEventComponent } from './events/create-event.component'
 import { Error404Component } from './errors/404.component'
 import { NavComponent } from './nav/nav.component'
-import { EventService} from './events/shared/event.service'
 import { ToastrService } from './common/toastr.service'
 import { appRoutes } from './routes'
-import { EventRouteActivator } from './events/event-details/event-route-activator.service'
+import { AuthService } from './user/auth.service'
 
 @NgModule({
     imports: [
@@ -25,9 +30,28 @@ import { EventRouteActivator } from './events/event-details/event-route-activato
         EventDetailsComponent, 
         CreateEventComponent,
         Error404Component,
-        NavComponent],
-    providers: [EventService, ToastrService, EventRouteActivator],
+        NavComponent
+    ],
+    providers: [
+        EventService, 
+        ToastrService, 
+        EventRouteActivator,
+        { 
+            provide: 'canDeactivateCreateEvent', 
+            useValue: checkDirtyState
+        },
+        EventListResolver,
+        AuthService
+    ],
     bootstrap: [EventsAppComponent]
 })
 
-export class AppModule {}
+export class AppModule {
+
+}
+
+function checkDirtyState(component:CreateEventComponent) {
+    if (component.isDirty)
+        return window.confirm('You have not saved. Are you sure?');
+    return true;
+}

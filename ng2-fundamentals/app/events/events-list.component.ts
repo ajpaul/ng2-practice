@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { EventService } from './shared/event.service'
 import { ToastrService } from './../common/toastr.service'
+import { ActivatedRoute } from '@angular/router'
+import { IEvent } from './shared/index'
 
 @Component({
     template: `
@@ -17,13 +19,15 @@ import { ToastrService } from './../common/toastr.service'
 })
 
 export class EventsListComponent implements OnInit{
-    events: any[];
+    events: IEvent[];
    
-   constructor(private eventService: EventService, private toastr: ToastrService) {
+   constructor(private eventService: EventService, private toastr: ToastrService, 
+        private aRoute:ActivatedRoute) {
    }
 
    ngOnInit() {
-       this.events = this.eventService.getEvents();
+       //this data is actually sitting in the route, placed there by the resolver
+       this.events = this.aRoute.snapshot.data['events'];
    }
 
 // In order for this to be back in, you need to add:
