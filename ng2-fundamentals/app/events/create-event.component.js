@@ -15,12 +15,16 @@ var CreateEventComponent = (function () {
         this.router = router;
         this.isDirty = true;
     }
+    CreateEventComponent.prototype.saveEvent = function (formValues) {
+        console.log(formValues);
+    };
     CreateEventComponent.prototype.cancel = function () {
         this.router.navigate(['/events']);
     };
     CreateEventComponent = __decorate([
         core_1.Component({
-            template: "\n        <h1>New Event</h1>\n        <hr>\n        <div class=\"col-md-6\">\n            <h3>[Create Event form will go here]</h3>\n            <br/>\n            <br/>\n            <button type=\"submit\" class=\"btn btn-primary\">Save</button>\n            <button type=\"button\" class=\"btn btn-default\" (click)=\"cancel()\">Cancel</button>\n        </div>\n    "
+            templateUrl: 'app/events/create-event.component.html',
+            styles: ["\n        em {\n            float: right;\n            color: #E05C65;\n            padding-left: 10px;\n        }\n        .error input { background-color: #E3C3C5; }\n        .error ::-webkit-input-placeholder { color: #999; }\n        .error ::-moz-input-placeholder { color: #999; }\n        .error :-moz-input-placeholder { color: #999; }\n        .error :ms-input-placeholder { color: #999; }\n    "]
         }), 
         __metadata('design:paramtypes', [router_1.Router])
     ], CreateEventComponent);

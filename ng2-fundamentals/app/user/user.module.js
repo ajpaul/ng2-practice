@@ -15,6 +15,7 @@ var user_routes_1 = require('./user.routes');
 var profile_component_1 = require('./profile.component');
 var login_component_1 = require('./login.component');
 var forms_1 = require('@angular/forms');
+var user_route_activator_service_1 = require('./user-route-activator.service');
 var UserModule = (function () {
     function UserModule() {
     }
@@ -30,7 +31,9 @@ var UserModule = (function () {
                 profile_component_1.ProfileComponent,
                 login_component_1.LoginComponent
             ],
-            providers: []
+            providers: [
+                user_route_activator_service_1.UserRouteActivator
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], UserModule);

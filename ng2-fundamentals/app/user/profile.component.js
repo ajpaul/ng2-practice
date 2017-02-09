@@ -18,11 +18,11 @@ var ProfileComponent = (function () {
         this.router = router;
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        var firstName = new forms_1.FormControl(this.auth.currentUser.firstName, forms_1.Validators.required);
-        var lastName = new forms_1.FormControl(this.auth.currentUser.lastName, forms_1.Validators.required);
+        this.firstName = new forms_1.FormControl(this.auth.currentUser.firstName, [forms_1.Validators.required, forms_1.Validators.pattern('[a-zA-Z].*')]);
+        this.lastName = new forms_1.FormControl(this.auth.currentUser.lastName, forms_1.Validators.required);
         this.profileForm = new forms_1.FormGroup({
-            firstName: firstName,
-            lastName: lastName
+            firstName: this.firstName,
+            lastName: this.lastName
         });
     };
     ProfileComponent.prototype.saveProfile = function (formValues) {
@@ -33,6 +33,15 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.cancel = function () {
         this.router.navigate(['/events']);
+    };
+    //get the values right off the controls...it's more direct
+    ProfileComponent.prototype.validateFirstName = function () {
+        if (this.firstName.invalid && this.firstName.touched)
+            return false;
+        return true;
+    };
+    ProfileComponent.prototype.validateLastName = function () {
+        return this.lastName.valid || this.lastName.untouched;
     };
     ProfileComponent = __decorate([
         core_1.Component({
