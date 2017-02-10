@@ -8,6 +8,7 @@ exports.appRoutes = [
     //when resolver is finished, add data to property called events on the route
     //needs to be consumed by that component
     { path: 'events', component: index_1.EventsListComponent, resolve: { events: index_1.EventListResolver } },
+    { path: 'events/session/new', component: index_1.CreateSessionComponent },
     { path: 'events/:id', component: index_1.EventDetailsComponent, canActivate: [index_1.EventRouteActivator] },
     { path: '', redirectTo: '/events', pathMatch: 'full' },
     { path: 'user', loadChildren: 'app/user/user.module#UserModule' }

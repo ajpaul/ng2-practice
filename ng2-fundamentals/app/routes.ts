@@ -8,7 +8,8 @@ import {
     CreateEventComponent,
     EventService,
     EventRouteActivator,
-    EventListResolver
+    EventListResolver,
+    CreateSessionComponent
 } from './events/index'
 
 export const appRoutes:Routes = [
@@ -19,7 +20,7 @@ export const appRoutes:Routes = [
     //when resolver is finished, add data to property called events on the route
     //needs to be consumed by that component
     { path: 'events', component: EventsListComponent, resolve: {events:EventListResolver} },
-
+    { path: 'events/session/new', component: CreateSessionComponent },
     { path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivator] },
     { path: '', redirectTo: '/events', pathMatch: 'full'}, //default route
     { path: 'user', loadChildren: 'app/user/user.module#UserModule'}

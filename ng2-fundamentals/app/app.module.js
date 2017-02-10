@@ -27,7 +27,8 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 router_1.RouterModule.forRoot(routes_1.appRoutes),
-                forms_1.FormsModule],
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule],
             declarations: [
                 events_app_component_1.EventsAppComponent,
                 index_1.EventsListComponent,
@@ -35,7 +36,8 @@ var AppModule = (function () {
                 index_1.EventDetailsComponent,
                 index_1.CreateEventComponent,
                 _404_component_1.Error404Component,
-                nav_component_1.NavComponent
+                nav_component_1.NavComponent,
+                index_1.CreateSessionComponent
             ],
             providers: [
                 index_1.EventService,
