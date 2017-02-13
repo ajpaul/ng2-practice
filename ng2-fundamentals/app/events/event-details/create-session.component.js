@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
+var index_1 = require('../shared/index');
 var CreateSessionComponent = (function () {
     function CreateSessionComponent() {
     }
@@ -18,7 +19,7 @@ var CreateSessionComponent = (function () {
         this.presenter = new forms_1.FormControl('', forms_1.Validators.required);
         this.duration = new forms_1.FormControl('', forms_1.Validators.required);
         this.level = new forms_1.FormControl('', forms_1.Validators.required);
-        this.abstract = new forms_1.FormControl('', [forms_1.Validators.required, forms_1.Validators.maxLength(400)]);
+        this.abstract = new forms_1.FormControl('', [forms_1.Validators.required, forms_1.Validators.maxLength(400), index_1.restrictedWords(['foo', 'bar'])]);
         this.newSessionForm = new forms_1.FormGroup({
             name: this.name,
             presenter: this.presenter,
@@ -28,11 +29,21 @@ var CreateSessionComponent = (function () {
         });
     };
     CreateSessionComponent.prototype.saveSession = function (formValues) {
-        console.log(formValues);
+        var session = {
+            id: undefined,
+            name: formValues.name,
+            duration: +formValues.duration,
+            level: formValues.level,
+            presenter: formValues.presenter,
+            abstract: formValues.abstract,
+            voters: []
+        };
+        console.log(session);
     };
     CreateSessionComponent = __decorate([
         core_1.Component({
-            templateUrl: 'app/events/event-details/create-session.component.html'
+            templateUrl: 'app/events/event-details/create-session.component.html',
+            styles: ["\n    em {\n        float: right;\n        color: #E05C65;\n        padding-left: 10px;\n    }\n    .error input, .error select, .error textarea { background-color: #E3C3C5; }\n    .error ::-webkit-input-placeholder { color: #999; }\n    .error ::-moz-input-placeholder { color: #999; }\n    .error :-moz-input-placeholder { color: #999; }\n    .error :ms-input-placeholder { color: #999; }\n"]
         }), 
         __metadata('design:paramtypes', [])
     ], CreateSessionComponent);

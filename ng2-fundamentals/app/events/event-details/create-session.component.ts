@@ -1,8 +1,21 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { ISession, restrictedWords } from '../shared/index'
 
 @Component({
-    templateUrl:'app/events/event-details/create-session.component.html'
+    templateUrl:'app/events/event-details/create-session.component.html',
+    styles: [`
+    em {
+        float: right;
+        color: #E05C65;
+        padding-left: 10px;
+    }
+    .error input, .error select, .error textarea { background-color: #E3C3C5; }
+    .error ::-webkit-input-placeholder { color: #999; }
+    .error ::-moz-input-placeholder { color: #999; }
+    .error :-moz-input-placeholder { color: #999; }
+    .error :ms-input-placeholder { color: #999; }
+`]
 })
 
 export class CreateSessionComponent implements OnInit {
@@ -22,7 +35,7 @@ export class CreateSessionComponent implements OnInit {
         this.presenter = new FormControl('', Validators.required);
         this.duration = new FormControl('', Validators.required);
         this.level = new FormControl('', Validators.required);
-        this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400)]);
+        this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), restrictedWords(['foo', 'bar'])]);
     
         this.newSessionForm = new FormGroup({
             name: this.name,
@@ -34,6 +47,17 @@ export class CreateSessionComponent implements OnInit {
     }
 
     saveSession(formValues) {
-        console.log(formValues);
+        let session:ISession =  {
+            id: undefined,
+            name: formValues.name,
+            duration: +formValues.duration,
+            level: formValues.level,
+            presenter: formValues.presenter,
+            abstract: formValues.abstract,
+            voters: []
+        }
+
+        console.log(session);
     }
+
 }
