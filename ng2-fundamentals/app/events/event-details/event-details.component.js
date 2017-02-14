@@ -19,6 +19,20 @@ var EventDetailsComponent = (function () {
     EventDetailsComponent.prototype.ngOnInit = function () {
         this.event = this.eventService.getEvent(+this.activatedRoute.snapshot.params['id']);
     };
+    EventDetailsComponent.prototype.addSession = function () {
+        this.addMode = true;
+    };
+    EventDetailsComponent.prototype.saveNewSession = function (session) {
+        //we need to assign a new id
+        var nextId = Math.max.apply(null, this.event.sessions.map(function (s) { return s.id; }));
+        session.id = nextId + 1;
+        this.event.sessions.push(session);
+        this.eventService.updateEvent(this.event);
+        this.addMode = false;
+    };
+    EventDetailsComponent.prototype.cancelAddSession = function () {
+        this.addMode = false;
+    };
     EventDetailsComponent = __decorate([
         core_1.Component({
             templateUrl: 'app/events/event-details/event-details.component.html',
