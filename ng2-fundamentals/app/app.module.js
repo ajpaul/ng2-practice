@@ -40,7 +40,8 @@ var AppModule = (function () {
                 nav_component_1.NavComponent,
                 index_1.CreateSessionComponent,
                 index_1.SessionListComponent,
-                collapsible_well_component_1.CollapsibleWellComponent
+                collapsible_well_component_1.CollapsibleWellComponent,
+                index_1.DurationPipe
             ],
             providers: [
                 index_1.EventService,
@@ -60,6 +61,7 @@ var AppModule = (function () {
     return AppModule;
 }());
 exports.AppModule = AppModule;
+//why is this in app module again? 
 function checkDirtyState(component) {
     if (component.isDirty)
         return window.confirm('You have not saved. Are you sure?');

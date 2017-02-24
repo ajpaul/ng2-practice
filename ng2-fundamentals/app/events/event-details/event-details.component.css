@@ -11,3 +11,7 @@ a {
     cursor: pointer;
     float: right;
 }
+
+.buttonRow {
+    margin-bottom: 10px;
+}

@@ -9,21 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var CollapsibleWellComponent = (function () {
-    function CollapsibleWellComponent() {
-        this.visible = true;
+var DurationPipe = (function () {
+    function DurationPipe() {
     }
-    CollapsibleWellComponent.prototype.toggleContent = function () {
-        this.visible = !this.visible;
+    DurationPipe.prototype.transform = function (value) {
+        switch (value) {
+            case 1: return 'Half Hour';
+            case 2: return 'One Hour';
+            case 3: return 'Half Day';
+            case 4: return 'Full Day';
+            default: return value.toString();
+        }
     };
-    CollapsibleWellComponent = __decorate([
-        core_1.Component({
-            selector: 'collapsible-well',
-            template: "\n    <div (click)=\"toggleContent()\" class=\"well pointable\">\n        <h4>\n            <ng-content select=\"[well-title]\"></ng-content>\n        </h4>\n        <ng-content *ngIf=\"visible\" select=\"[well-body]\"></ng-content>\n    </div>\n    "
-        }), 
+    DurationPipe = __decorate([
+        core_1.Pipe({ name: 'duration' }), 
         __metadata('design:paramtypes', [])
-    ], CollapsibleWellComponent);
-    return CollapsibleWellComponent;
+    ], DurationPipe);
+    return DurationPipe;
 }());
-exports.CollapsibleWellComponent = CollapsibleWellComponent;
-//# sourceMappingURL=collapsible-well.component.js.map
+exports.DurationPipe = DurationPipe;
+//# sourceMappingURL=duration.pipe.js.map

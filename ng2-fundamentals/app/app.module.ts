@@ -12,7 +12,8 @@ import {
     EventRouteActivator,
     EventListResolver,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    DurationPipe
 } from './events/index'
  
 import { EventsAppComponent } from './events-app.component'
@@ -39,7 +40,8 @@ import { AuthService } from './user/auth.service'
         NavComponent,
         CreateSessionComponent,
         SessionListComponent,
-        CollapsibleWellComponent
+        CollapsibleWellComponent,
+        DurationPipe
     ],
     providers: [
         EventService, 
@@ -59,6 +61,7 @@ export class AppModule {
 
 }
 
+//why is this in app module again? 
 function checkDirtyState(component:CreateEventComponent) {
     if (component.isDirty)
         return window.confirm('You have not saved. Are you sure?');

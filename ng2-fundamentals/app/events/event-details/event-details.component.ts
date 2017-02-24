@@ -11,6 +11,7 @@ import { IEvent, ISession } from '../shared/index'
 export class EventDetailsComponent implements OnInit {
     event: IEvent;
     addMode: Boolean;
+    filterBy: string = 'all';
 
     constructor(private eventService:EventService, private activatedRoute:ActivatedRoute) {
 
