@@ -15,3 +15,7 @@ a {
 .buttonRow {
     margin-bottom: 10px;
 }
+
+.sort-group-left {
+    margin: 0 20px;
+}

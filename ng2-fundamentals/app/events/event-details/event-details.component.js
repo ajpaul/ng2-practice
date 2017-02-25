@@ -16,6 +16,7 @@ var EventDetailsComponent = (function () {
         this.eventService = eventService;
         this.activatedRoute = activatedRoute;
         this.filterBy = 'all';
+        this.sortBy = 'votes';
     }
     EventDetailsComponent.prototype.ngOnInit = function () {
         this.event = this.eventService.getEvent(+this.activatedRoute.snapshot.params['id']);
