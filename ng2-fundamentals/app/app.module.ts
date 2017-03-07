@@ -19,13 +19,13 @@ import {
 import { EventsAppComponent } from './events-app.component'
 import { Error404Component } from './errors/404.component'
 import { NavComponent } from './nav/nav.component'
-import { TOASTR_TOKEN, Toastr } from './common/toastr.service'
-import { CollapsibleWellComponent } from './common/collapsible-well.component'
+import { JQ_TOKEN, TOASTR_TOKEN, Toastr, CollapsibleWellComponent, SimpleModalComponent} from './common/index'
 import { appRoutes } from './routes'
 import { AuthService } from './user/auth.service'
 
 //tell tsc to not worry about toastr
 declare let toastr: Toastr;
+declare let jQuery: Object;
 
 @NgModule({
     imports: [
@@ -44,18 +44,24 @@ declare let toastr: Toastr;
         CreateSessionComponent,
         SessionListComponent,
         CollapsibleWellComponent,
+        SimpleModalComponent,
         DurationPipe
     ],
-    providers: [
+    providers: [ //four ways to register providers: useClass, useValue, useExisting, useFactory
         EventService, 
         { 
             provide: TOASTR_TOKEN, 
             useValue: toastr 
         }, 
-        EventRouteActivator,
+        //EventRouteActivator, --> this is short hand for the line below
+        { provide: EventRouteActivator, useClass: EventRouteActivator },
         { 
             provide: 'canDeactivateCreateEvent', 
             useValue: checkDirtyState
+        },
+        {
+            provide: JQ_TOKEN,
+            useValue: jQuery
         },
         EventListResolver,
         AuthService

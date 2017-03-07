@@ -10,17 +10,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_1 = require('../user/auth.service');
+var index_1 = require('../events/index');
 var NavComponent = (function () {
-    function NavComponent(auth) {
+    function NavComponent(auth, eventService) {
         this.auth = auth;
+        this.eventService = eventService;
+        this.searchTerm = "";
     }
+    //return list of found sessions
+    NavComponent.prototype.searchSessions = function (searchTerm) {
+        var _this = this;
+        this.eventService.searchSessions(searchTerm).subscribe(function (sessions) {
+            _this.foundSessions = sessions;
+            console.log(_this.foundSessions);
+        });
+    };
     NavComponent = __decorate([
         core_1.Component({
             selector: 'nav-component',
             templateUrl: 'app/nav/nav.component.html',
             styleUrls: ['app/nav/nav.component.css']
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, index_1.EventService])
     ], NavComponent);
     return NavComponent;
 }());

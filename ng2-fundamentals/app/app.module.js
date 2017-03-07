@@ -16,8 +16,7 @@ var index_1 = require('./events/index');
 var events_app_component_1 = require('./events-app.component');
 var _404_component_1 = require('./errors/404.component');
 var nav_component_1 = require('./nav/nav.component');
-var toastr_service_1 = require('./common/toastr.service');
-var collapsible_well_component_1 = require('./common/collapsible-well.component');
+var index_2 = require('./common/index');
 var routes_1 = require('./routes');
 var auth_service_1 = require('./user/auth.service');
 var AppModule = (function () {
@@ -40,19 +39,25 @@ var AppModule = (function () {
                 nav_component_1.NavComponent,
                 index_1.CreateSessionComponent,
                 index_1.SessionListComponent,
-                collapsible_well_component_1.CollapsibleWellComponent,
+                index_2.CollapsibleWellComponent,
+                index_2.SimpleModalComponent,
                 index_1.DurationPipe
             ],
             providers: [
                 index_1.EventService,
                 {
-                    provide: toastr_service_1.TOASTR_TOKEN,
+                    provide: index_2.TOASTR_TOKEN,
                     useValue: toastr
                 },
-                index_1.EventRouteActivator,
+                //EventRouteActivator, --> this is short hand for the line below
+                { provide: index_1.EventRouteActivator, useClass: index_1.EventRouteActivator },
                 {
                     provide: 'canDeactivateCreateEvent',
                     useValue: checkDirtyState
+                },
+                {
+                    provide: index_2.JQ_TOKEN,
+                    useValue: jQuery
                 },
                 index_1.EventListResolver,
                 auth_service_1.AuthService
