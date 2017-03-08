@@ -19,7 +19,8 @@ import {
 import { EventsAppComponent } from './events-app.component'
 import { Error404Component } from './errors/404.component'
 import { NavComponent } from './nav/nav.component'
-import { JQ_TOKEN, TOASTR_TOKEN, Toastr, CollapsibleWellComponent, SimpleModalComponent} from './common/index'
+import { JQ_TOKEN, TOASTR_TOKEN, Toastr, CollapsibleWellComponent, 
+    SimpleModalComponent, ModalTriggerDirective} from './common/index'
 import { appRoutes } from './routes'
 import { AuthService } from './user/auth.service'
 
@@ -45,6 +46,7 @@ declare let jQuery: Object;
         SessionListComponent,
         CollapsibleWellComponent,
         SimpleModalComponent,
+        ModalTriggerDirective,
         DurationPipe
     ],
     providers: [ //four ways to register providers: useClass, useValue, useExisting, useFactory

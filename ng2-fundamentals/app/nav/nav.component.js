@@ -22,7 +22,6 @@ var NavComponent = (function () {
         var _this = this;
         this.eventService.searchSessions(searchTerm).subscribe(function (sessions) {
             _this.foundSessions = sessions;
-            console.log(_this.foundSessions);
         });
     };
     NavComponent = __decorate([

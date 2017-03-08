@@ -19,7 +19,16 @@ var EventDetailsComponent = (function () {
         this.sortBy = 'votes';
     }
     EventDetailsComponent.prototype.ngOnInit = function () {
-        this.event = this.eventService.getEvent(+this.activatedRoute.snapshot.params['id']);
+        //this is only working the first time
+        //snapshot is not an observable so it has problems updating!
+        //we aren't subscribing to any changes! ID param may change (in the search modal)
+        //this.event = this.eventService.getEvent(+this.activatedRoute.snapshot.params['id'])
+        var _this = this;
+        //updated observable way of doing things
+        this.activatedRoute.params.forEach(function (params) {
+            _this.event = _this.eventService.getEvent(+params['id']); //+ changes from a string to 
+            _this.addMode = false; //take us out of addMode just in case we are in it
+        });
     };
     EventDetailsComponent.prototype.addSession = function () {
         this.addMode = true;
