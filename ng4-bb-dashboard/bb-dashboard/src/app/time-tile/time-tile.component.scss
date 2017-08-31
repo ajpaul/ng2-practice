@@ -1,1 +1,11 @@
-/* download SASS and incorporate into the build step */
+.tile {
+    background-color: blue; //for now. future = dynamic input
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+
+    h3 {
+        color: black;
+    }
+}
